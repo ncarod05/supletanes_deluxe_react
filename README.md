@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# supletanes_deluxe_react
+Migración de página Supletanes Deluxe a React.
+
+Integrantes:
+- Nicolas Caro
+- Francisco Olate
+- Christopher Espinoza
+>>>>>>> 38a54deec67bf051ba2c2274e7a9728b33371f53
