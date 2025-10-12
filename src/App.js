@@ -1,10 +1,18 @@
-import HomePage from './components/HomePage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Carrito from "./components/carrito";
+import HomePage from "./components/HomePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/css/styles.css';
 
 function App() {
-  return <HomePage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/carrito" element={<Carrito />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
