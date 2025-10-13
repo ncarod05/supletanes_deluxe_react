@@ -1,4 +1,19 @@
+import React, { useEffect, useState } from 'react';
+
 function Navbar() {
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem('usuario');
+    setUsuario(user);
+  }, []);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('usuario');
+    setUsuario(null);
+    window.location.href = '/';
+  };
+
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container-fluid">
@@ -18,6 +33,9 @@ function Navbar() {
             <li className="nav-item">
               <a className="nav-link custom-link" href="/quienes">Quienes somos</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link custom-link" href="/login">Iniciar Sesión</a>
+            </li>
           </ul>
           <form className="d-flex align-items-center" role="search">
             <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
@@ -31,13 +49,15 @@ function Navbar() {
               <a href="#" className="text-white text-decoration-none d-flex align-items-center"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Mi cuenta">
                 <i className="bi bi-person-circle fs-4"></i>
+                {usuario && <span className="ms-2">{usuario}</span>}
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>
-                <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>
-                <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>
+                {!usuario && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}
+                {!usuario && <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>}
+                {usuario && <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>}
+                {usuario && <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>}
                 <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                {usuario && <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>}
               </ul>
             </div>
           </div>
