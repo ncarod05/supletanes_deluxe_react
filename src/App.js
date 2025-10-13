@@ -12,6 +12,8 @@ import AdminUsuarios from "./components/AdminUsuarios";
 import AdminReportes from "./components/AdminReportes";
 import QuienesSomos from "./components/QuienesSomos";
 import Productos from "./components/Productos";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/admin/reportes" element={<AdminReportes />} />
         <Route path="/quienes" element={<QuienesSomos />} />
         <Route path="/productos" element={<Productos />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/nuevousuario" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
