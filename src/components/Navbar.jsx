@@ -1,4 +1,6 @@
 function Navbar() {
+  const isAdmin = true; // Simulación de usuario administrador
+
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container-fluid">
@@ -36,6 +38,12 @@ function Navbar() {
                 <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>
                 <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>
                 <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>
+                {isAdmin && (
+                  <>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li><a className="dropdown-item" href="/admin">Panel Admin</a></li>
+                  </>
+                )}
                 <li><hr className="dropdown-divider" /></li>
                 <li><a className="dropdown-item" href="/logout">Cerrar sesión</a></li>
               </ul>
