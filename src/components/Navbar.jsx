@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function Navbar() {
+  const isAdmin = true; // Simulación de usuario administrador
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
@@ -54,9 +55,9 @@ function Navbar() {
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 {!usuario && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}
                 {!usuario && <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>}
+                {usuario && isAdmin && <li><a className="dropdown-item" href="/admin">Panel Admin</a></li>}
                 {usuario && <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>}
                 {usuario && <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>}
-                <li><hr className="dropdown-divider" /></li>
                 {usuario && <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>}
               </ul>
             </div>
