@@ -11,6 +11,17 @@ function AdminDashboard() {
         <Container>
           <h2 className="mb-4 text-center">Panel de Administrador</h2>
           <Row className="justify-content-center">
+              <Col md={3} className='d-flex'>
+                <i class="bi bi-person-vcard" style={{ fontSize: '18rem', color: '#264653' }}></i>
+              </Col>
+
+              <Col className="admin-info">
+                <h3>Nombre:</h3>
+                <h3>Rut:</h3>
+              </Col>
+          </Row>
+
+          <Row className="justify-content-center">
             {/* Gestión de Productos */}
             <Col md={3} className="d-flex">
               <Card className="mb-4 text-center shadow-sm h-100 w-100 admin-card">
