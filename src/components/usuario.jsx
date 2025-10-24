@@ -53,7 +53,7 @@ const Usuario = () => {
                 </div>
                 <div className="text-end">
                   <span className="badge bg-success mb-2">Entregado</span><br />
-                  <a href="/reseñas" className="btn btn-outline-primary btn-sm">
+                  <a href="/resenas" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-pencil-square me-1"></i> Dejar reseña
                   </a>
                 </div>
