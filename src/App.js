@@ -12,6 +12,10 @@ import AdminUsuarios from "./components/AdminUsuarios";
 import AdminReportes from "./components/AdminReportes";
 import QuienesSomos from "./components/QuienesSomos";
 import Productos from "./components/Productos";
+import ProductoIndividual from './components/ProductoIndividual';
+import ProductoIndividual2 from './components/ProductoIndividual2';
+import ProductoIndividual3 from './components/ProductoIndividual3';
+import ProductoIndividual4 from './components/ProductoIndividual4';
 import Login from "./components/Login";
 import Register from "./components/Register";
 
@@ -30,6 +34,10 @@ function App() {
         <Route path="/admin/reportes" element={<AdminReportes />} />
         <Route path="/quienes" element={<QuienesSomos />} />
         <Route path="/productos" element={<Productos />} />
+        <Route path="/producto_individual" element={<ProductoIndividual />} />
+        <Route path="/producto_individual2" element={<ProductoIndividual2 />} />
+        <Route path="/producto_individual3" element={<ProductoIndividual3 />} />
+        <Route path="/producto_individual4" element={<ProductoIndividual4 />} />
         <Route path="/login" element={<Login />} />
         <Route path="/nuevousuario" element={<Register />} />
       </Routes>

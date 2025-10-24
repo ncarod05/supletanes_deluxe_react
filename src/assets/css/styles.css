@@ -49,7 +49,6 @@ h3 {
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  font-weight: bold;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -387,4 +386,9 @@ body {
 
 .admin-info{
   align-content: center;
+}
+
+.reseña-titulo {
+  color: #264653; /* o el color que uses en tu marca */
+  font-weight: 700;
 }
