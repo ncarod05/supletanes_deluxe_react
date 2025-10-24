@@ -18,6 +18,7 @@ import ProductoIndividual3 from './components/ProductoIndividual3';
 import ProductoIndividual4 from './components/ProductoIndividual4';
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Resenas from "./components/resena";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/producto_individual4" element={<ProductoIndividual4 />} />
         <Route path="/login" element={<Login />} />
         <Route path="/nuevousuario" element={<Register />} />
+        <Route path="/resenas" element={<Resenas />} />
       </Routes>
     </BrowserRouter>
   );

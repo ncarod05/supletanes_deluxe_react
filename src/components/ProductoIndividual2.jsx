@@ -63,7 +63,7 @@ function ProductoIndividual2() {
                             </Form.Group>
 
                             <div className="d-flex gap-3 mb-3">
-                                <Button variant="success" size="lg" className="flex-grow-1">
+                                <Button variant="danger" size="lg" className="flex-grow-1">
                                     <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
                                 </Button>
                                 <Button variant="outline-danger" size="lg" className="flex-grow-1">
@@ -73,7 +73,6 @@ function ProductoIndividual2() {
                         </Col>
                     </Row>
 
-                    {/* Sección nutricional */}
                     <Row className="mt-5 product-page-nutrition row section-box">
                         <Col md={6}>
                             <h4>Descripción del producto</h4>
@@ -109,8 +108,7 @@ function ProductoIndividual2() {
                         </Col>
                     </Row>
 
-                    {/* Reseñas */}
-                    <div id="reseñas" className="mt-5">
+                    <div id="resenas" className="mt-5">
                         <h3 className="mb-3">Reseñas de clientes</h3>
 
                         <div className="mt-4 mb-4">
@@ -127,10 +125,9 @@ function ProductoIndividual2() {
                             </div>
                         </div>
 
-                        {/* Reseña 1 */}
                         <div className="card mb-3 shadow-sm border-0">
                             <div className="card-body">
-                                <h5 className="card-title reseña-titulo">Gran calidad</h5>
+                                <h5 className="card-title resena-titulo">Gran calidad</h5>
                                 <div className="rating mb-2">
                                     <i className="bi bi-star-fill text-warning"></i>
                                     <i className="bi bi-star-fill text-warning"></i>
@@ -143,10 +140,9 @@ function ProductoIndividual2() {
                             </div>
                         </div>
 
-                        {/* Reseña 2 */}
                         <div className="card mb-3 shadow-sm border-0">
                             <div className="card-body">
-                                <h5 className="card-title reseña-titulo">Excelente sabor</h5>
+                                <h5 className="card-title resena-titulo">Excelente sabor</h5>
                                 <div className="rating mb-2">
                                     <i className="bi bi-star-fill text-warning"></i>
                                     <i className="bi bi-star-fill text-warning"></i>
@@ -160,7 +156,7 @@ function ProductoIndividual2() {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/reseñas" className="button">
+                            <a href="/resenas" className="button btn btn-danger">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>
