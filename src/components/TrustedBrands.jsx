@@ -1,3 +1,5 @@
+import React from 'react';
+
 function TrustedBrands() {
   return (
     <section className="trusted-brands py-5 bg-light">

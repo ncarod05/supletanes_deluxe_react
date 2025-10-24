@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Footer() {
   return (
     <footer className="custom-footer text-white mt-5 pt-4 pb-4">
