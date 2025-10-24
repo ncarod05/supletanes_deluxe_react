@@ -1,0 +1,6 @@
+{
+    "editor.aiStats.enabled": false,
+    "workbench.settings.showAISearchToggle": true,
+    "chat.disableAIFeatures": false,
+    "editor.bracketPairColorization.enabled": true
+}

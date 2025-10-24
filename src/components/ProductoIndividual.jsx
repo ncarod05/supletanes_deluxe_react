@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -73,7 +74,6 @@ function ProductoIndividual2() {
                         </Col>
                     </Row>
 
-                    {/* Sección nutricional */}
                     <Row className="mt-5 product-page-nutrition row section-box">
                         <Col md={6}>
                             <h4>Descripción del producto</h4>
@@ -110,7 +110,6 @@ function ProductoIndividual2() {
                         </Col>
                     </Row>
 
-                    {/* Reseñas */}
                     <div id="reseñas" className="mt-5">
                         <h3 className="mb-3">Reseñas de clientes</h3>
 
@@ -128,7 +127,6 @@ function ProductoIndividual2() {
                             </div>
                         </div>
 
-                        {/* Reseña 1 */}
                         <div className="card mb-3 shadow-sm border-0">
                             <div className="card-body">
                                 <h5 className="card-title reseña-titulo">Gran calidad</h5>
@@ -144,7 +142,6 @@ function ProductoIndividual2() {
                             </div>
                         </div>
 
-                        {/* Reseña 2 */}
                         <div className="card mb-3 shadow-sm border-0">
                             <div className="card-body">
                                 <h5 className="card-title reseña-titulo">Excelente Producto</h5>
@@ -161,10 +158,11 @@ function ProductoIndividual2() {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/reseñas" className="button">
+                            <a href="/resenas" className="button">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>
+
                     </div>
                 </Container>
             </main>

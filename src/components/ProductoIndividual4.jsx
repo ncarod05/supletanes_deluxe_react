@@ -151,7 +151,7 @@ function ProductoIndividual() {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/reseñas" className="button">
+                            <a href="/resenas" className="button btn btn-danger">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>
