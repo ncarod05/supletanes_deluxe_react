@@ -95,6 +95,30 @@ function Productos() {
                   />
                 </Col>
 
+                <Col sm={6} md={4} lg={3}>
+                  <ProductCard
+                    name="Multivitamínico Completo 60 caps"
+                    brand="Health Plus"
+                    description="Fórmula completa con vitaminas y minerales esenciales para tu salud diaria y energía."
+                    price="$11.990"
+                    oldPrice="$29.990"
+                    image="/assets/img/Multivitaminico.jpg"
+                    link="/producto_individual3"
+                  />
+                </Col>
+
+                <Col sm={6} md={4} lg={3}>
+                  <ProductCard
+                    name="Nutrex creatina monohidratada 1kg"
+                    brand="Nutrex"
+                    description="Suplemento de máxima pureza para optimizar el rendimiento deportivo. Cada porción proporciona 5 gramos de creatina monohidratada de calidad premium"
+                    price="$49.990"
+                    oldPrice="$54.990"
+                    image="/assets/img/creatina nutrex.webp"
+                    link="/producto_individual4"
+                  />
+                </Col>
+
                 {/* Más productos aquí */}
               </Row>
             </Col>
