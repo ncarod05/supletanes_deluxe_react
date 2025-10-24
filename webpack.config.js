@@ -1,4 +1,15 @@
+const path = require('path');
+
 module.exports = {
+  entry: './src/index.js', // punto de entrada
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  // para importar archivos sin escribir la extensión:
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
@@ -12,6 +23,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/, // regla para CSS
+        use: ['style-loader', 'css-loader'],
+      },
     ],
-  },
+  },  
 };

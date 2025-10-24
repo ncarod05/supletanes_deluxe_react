@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from 'react-bootstrap';
 
 function ProductCard({ name, brand, description, price, oldPrice, image, link }) {

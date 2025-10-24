@@ -1,3 +1,5 @@
+import React from 'react';
+
 function CarouselBanner() {
   return (
     <div id="carouselBanner" className="carousel slide carousel-banner" data-bs-ride="carousel">

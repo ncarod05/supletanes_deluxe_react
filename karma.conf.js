@@ -1,23 +1,33 @@
-module.exports = function(config) {
-  config.set({
-     
-    // Framework: Usamos Jasmine
-    frameworks: ['jasmine'], 
+const webpackConfig = require('./webpack.config');
 
-    // Solo cargamos los archivos de lógica simple y la prueba
+module.exports = function (config) {
+  config.set({
+    //excluir el app test js
+    exclude: [
+      'src/App.test.js'
+    ],
+    // Framework Jasmine y webpack
+    frameworks: ['jasmine', 'webpack'],
+
+    //cargamos los archivos
     files: [
-      'src/calculadora.js',       // El código de la función
-      'tests/calculadora.spec.js', // El código de la prueba
-      'tests/servicio_api.spec.js'
+      { pattern: 'public/assets/img/**/*', watched: false, included: false, served: true, nocache: false }, // para las imagenes
+      'src/components/**/*.jsx',          // Componentes React
+      'src/tests/**/*.spec.jsx'           // Pruebas unitarias
     ],
 
-    // Quitamos los preprocesadores (Webpack) si los añadiste antes
-    preprocessors: {}, 
+    preprocessors: {
+      'src/**/*.jsx': ['webpack'],
+      'src/tests/**/*.spec.jsx': ['webpack']
+    },
+
+    // usar nuestra config
+    webpack: webpackConfig,
 
     // Navegador sin cabeza (Headless)
-    browsers: ['ChromeHeadless'], 
+    browsers: ['ChromeHeadless'],
 
     // Ejecutar una sola vez
-    singleRun: true 
+    singleRun: true
   });
 };
