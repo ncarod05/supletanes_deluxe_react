@@ -1,3 +1,5 @@
+import React from 'react';
+
 function TopProducts() {
   return (
     <section className="top-products py-5">
