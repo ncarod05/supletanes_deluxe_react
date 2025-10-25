@@ -31,7 +31,7 @@ const Pedidos = () => {
                   <a href="/producto_individual" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-eye"></i> Ver detalle
                   </a>
-                  <a href="/reseñas" className="btn btn-outline-primary btn-sm">
+                  <a href="/resenas" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-pencil-square me-1"></i> Dejar reseña
                   </a>
                 </td>
