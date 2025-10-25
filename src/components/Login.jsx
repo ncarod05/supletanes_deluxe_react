@@ -15,7 +15,28 @@ const Login = ({ setCart }) => {
     setError('');
     localStorage.setItem('usuario', email); // Guardar usuario temporal
 
-    // Precargar productos al iniciar sesión
+    // Precargar productos administrables si no existen
+    const productosAdminIniciales = [
+      {
+        id: 1,
+        nombre: 'Proteína Whey',
+        precio: 19990,
+        descripcion: 'Proteína de suero para recuperación muscular',
+        categoria: 'Proteína',
+        stock: 36
+      },
+      {
+        id: 2,
+        nombre: 'Creatina Monohidratada',
+        precio: 14990,
+        descripcion: 'Creatina para fuerza y rendimiento',
+        categoria: 'Creatina',
+        stock: 67
+      }
+    ];
+    localStorage.setItem('adminProductos', JSON.stringify(productosAdminIniciales));
+
+    // Precargar productos del carrito
     const productosIniciales = [
       { nombre: "Prostar Whey Protein 5LB", cantidad: 1, precio: 59990 },
       { nombre: "Multivitamínico Completo 60 caps", cantidad: 2, precio: 23980 },

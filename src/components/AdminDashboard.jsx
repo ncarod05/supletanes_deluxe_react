@@ -13,8 +13,8 @@ function AdminDashboard() {
               </Col>
 
               <Col className="admin-info">
-                <h3>Nombre:</h3>
-                <h3>Rut:</h3>
+                <h3>Nombre: Juan Pérez Ramirez</h3>
+                <h3>Rut: XX.XXX.XXX-X</h3>
               </Col>
           </Row>
 

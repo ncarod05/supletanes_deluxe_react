@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, Form } from 'react-bootstrap';
 
 function AdminProductos() {
-  const [productos, setProductos] = useState([
-    { id: 1, nombre: 'Proteína Whey', precio: 19990 },
-    { id: 2, nombre: 'Creatina Monohidratada', precio: 14990 },
-  ]);
+  const [productos, setProductos] = useState(() => {
+    const guardados = localStorage.getItem('adminProductos');
+    return guardados ? JSON.parse(guardados) : [
+      { id: 1, nombre: 'Proteína Whey', precio: 19990, categoria: 'Proteina', stock: 58 },
+      { id: 2, nombre: 'Creatina Monohidratada', precio: 14990, categoria: 'Creatina', stock: 63 },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('adminProductos', JSON.stringify(productos));
+  }, [productos]);
 
   const [showModal, setShowModal] = useState(false);
-  const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '' });
+  const [nuevoProducto, setNuevoProducto] = useState({
+    nombre: '',
+    precio: '',
+    descripcion: '',
+    categoria: '',
+    stock: '',
+  });
   const [modoEdicion, setModoEdicion] = useState(false);
   const [productoEditando, setProductoEditando] = useState(null);
 
@@ -26,18 +39,25 @@ function AdminProductos() {
   };
 
   const guardarProducto = () => {
-    if (modoEdicion) {
-      setProductos(productos.map(p =>
-        p.id === productoEditando.id ? { ...productoEditando, ...nuevoProducto } : p
-      ));
-    } else {
-      const nuevo = {
-        id: productos.length + 1,
-        nombre: nuevoProducto.nombre,
-        precio: parseInt(nuevoProducto.precio),
-      };
-      setProductos([...productos, nuevo]);
+    const { nombre, precio, categoria, stock } = nuevoProducto;
+    if (!nombre || nombre.length < 3 || !precio || precio <= 0 || !categoria || stock === '') {
+      alert('Completa todos los campos obligatorios correctamente.');
+      return;
     }
+
+    const productoFinal = {
+      ...nuevoProducto,
+      precio: parseInt(precio),
+      stock: parseInt(stock),
+      id: modoEdicion ? productoEditando.id : productos.length + 1,
+    };
+
+    if (modoEdicion) {
+      setProductos(productos.map(p => p.id === productoEditando.id ? productoFinal : p));
+    } else {
+      setProductos([...productos, productoFinal]);
+    }
+
     cerrarModal();
   };
 
@@ -58,6 +78,8 @@ function AdminProductos() {
               <th>ID</th>
               <th>Nombre</th>
               <th>Precio</th>
+              <th>Categoría</th>
+              <th>Stock</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -67,6 +89,8 @@ function AdminProductos() {
                 <td>{producto.id}</td>
                 <td>{producto.nombre}</td>
                 <td>${producto.precio.toLocaleString()}</td>
+                <td>{producto.categoria}</td>
+                <td>{producto.stock}</td>
                 <td>
                   <Button variant="warning" size="sm" className="me-2" onClick={() => abrirModal(producto)}>Editar</Button>{' '}
                   <Button variant="danger" size="sm" onClick={() => eliminarProducto(producto.id)}>Eliminar</Button>
@@ -98,6 +122,43 @@ function AdminProductos() {
                 type="number"
                 value={nuevoProducto.precio}
                 onChange={(e) => setNuevoProducto({ ...nuevoProducto, precio: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                value={nuevoProducto.descripcion}
+                onChange={(e) => setNuevoProducto({ ...nuevoProducto, descripcion: e.target.value })}
+                maxLength={200}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Categoría</Form.Label>
+              <Form.Select
+                value={nuevoProducto.categoria}
+                onChange={(e) => setNuevoProducto({ ...nuevoProducto, categoria: e.target.value })}
+              >
+                <option value="">Selecciona una categoría</option>
+                <option value="Proteína">Proteína</option>
+                <option value="Creatina">Creatina</option>
+                <option value="Pre-entreno">Pre-entreno</option>
+                <option value="Vitaminas">Vitaminas</option>
+                <option value="Omega-3">Omega-3</option>
+                <option value="Barras Proteicas">Barras Proteicas</option>
+                <option value="Ganadores De Peso">Ganadores De Peso</option>
+                <option value="Probióticos">Probióticos</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Stock</Form.Label>
+              <Form.Control
+                type="number"
+                value={nuevoProducto.stock}
+                onChange={(e) => setNuevoProducto({ ...nuevoProducto, stock: e.target.value })}
+                min={0}
               />
             </Form.Group>
           </Form>
