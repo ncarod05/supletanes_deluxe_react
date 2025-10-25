@@ -1,13 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import { useNavigate, Link } from 'react-router-dom';
 
-function ProductoIndividual2() {
+function ProductoIndividual({ setCart }) {
+    const producto = {
+        nombre: "Prostar Whey Protein 5LB",
+        cantidad: 1,
+        precio: 59990,
+    };
+
+    const [cantidad, setCantidad] = useState(1);
+
+    const agregarAlCarrito = () => {
+        const nuevoProducto = { ...producto };
+
+        // Leer carrito actual desde localStorage
+        const carritoActual = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        // Verificar si ya existe
+        const existe = carritoActual.find(p => p.nombre === nuevoProducto.nombre);
+        let actualizado;
+
+        if (existe) {
+            actualizado = carritoActual.map(p =>
+                p.nombre === nuevoProducto.nombre
+                    ? { ...p, cantidad: p.cantidad + 1 }
+                    : p
+            );
+        } else {
+            actualizado = [...carritoActual, nuevoProducto];
+        }
+
+        // Guardar en localStorage
+        localStorage.setItem("carrito", JSON.stringify(actualizado));
+
+        // Actualizar estado
+        setCart(actualizado);
+
+        //Alerta
+        alert("Producto agregado al carrito 🛒");
+    };
+
+    const navigate = useNavigate();
+
     return (
         <>
-            <Navbar />
             <main>
                 <Container className="my-5 product-page">
                     <Row>
@@ -52,7 +89,12 @@ function ProductoIndividual2() {
 
                             <Form.Group className="mb-3 w-25">
                                 <Form.Label>Cantidad:</Form.Label>
-                                <Form.Control type="number" min={1} defaultValue={1} />
+                                <Form.Control
+                                    type="number"
+                                    min={1}
+                                    value={cantidad}
+                                    onChange={e => setCantidad(Number(e.target.value))}
+                                />
                             </Form.Group>
 
                             <Form.Group className="mb-3 w-50">
@@ -64,7 +106,7 @@ function ProductoIndividual2() {
                             </Form.Group>
 
                             <div className="d-flex gap-3 mb-3">
-                                <Button variant="success" size="lg" className="flex-grow-1">
+                                <Button variant="success" size="lg" className="flex-grow-1" onClick={agregarAlCarrito}>
                                     <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
                                 </Button>
                                 <Button variant="outline-danger" size="lg" className="flex-grow-1">
@@ -166,9 +208,8 @@ function ProductoIndividual2() {
                     </div>
                 </Container>
             </main>
-            <Footer />
         </>
     );
 }
 
-export default ProductoIndividual2;
+export default ProductoIndividual;

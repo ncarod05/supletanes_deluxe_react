@@ -1,12 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function AdminDashboard() {
   return (
     <>
-      <Navbar />
       <main className="mt-5">
         <Container>
           <h2 className="mb-4 text-center">Panel de Administrador</h2>
@@ -72,7 +69,6 @@ function AdminDashboard() {
           </Row>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

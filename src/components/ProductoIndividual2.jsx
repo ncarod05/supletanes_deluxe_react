@@ -1,12 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
-function ProductoIndividual2() {
+function ProductoIndividual2({ setCart }) {
     return (
         <>
-            <Navbar />
             <main>
                 <Container className="my-5 product-page">
                     <Row>
@@ -63,7 +60,7 @@ function ProductoIndividual2() {
                             </Form.Group>
 
                             <div className="d-flex gap-3 mb-3">
-                                <Button variant="danger" size="lg" className="flex-grow-1">
+                                <Button variant="success" size="lg" className="flex-grow-1">
                                     <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
                                 </Button>
                                 <Button variant="outline-danger" size="lg" className="flex-grow-1">
@@ -163,7 +160,6 @@ function ProductoIndividual2() {
                     </div>
                 </Container>
             </main>
-            <Footer />
         </>
     );
 }

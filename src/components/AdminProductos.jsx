@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Table, Button, Modal, Form } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function AdminProductos() {
   const [productos, setProductos] = useState([
@@ -49,7 +47,6 @@ function AdminProductos() {
 
   return (
     <>
-      <Navbar />
       <Container className="mt-5">
         <h2 className="mb-3">Gestión de Productos</h2>
         <Button variant="success" className="mb-3" onClick={() => abrirModal()}>
@@ -79,7 +76,6 @@ function AdminProductos() {
           </tbody>
         </Table>
       </Container>
-      <Footer />
 
       {/* Modal */}
       <Modal show={showModal} onHide={cerrarModal}>

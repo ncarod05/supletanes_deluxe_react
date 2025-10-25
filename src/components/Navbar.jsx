@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function Navbar() {
+function Navbar({ cartCount }) {
   const isAdmin = true; // Simulación de usuario administrador
   const [usuario, setUsuario] = useState(null);
 
@@ -8,10 +8,10 @@ function Navbar() {
     const user = localStorage.getItem('usuario');
     setUsuario(user);
   }, []);
-  
+
   const handleLogout = () => {
     localStorage.removeItem('usuario');
-    setUsuario(null);
+    localStorage.removeItem("carrito");
     window.location.href = '/';
   };
 
@@ -45,12 +45,17 @@ function Navbar() {
           <div className="d-flex align-items-center gap-3">
             <a href="/carrito" className="text-white text-decoration-none position-relative" title="Carrito de compras">
               <i className="bi bi-cart3 fs-4"></i>
+              {cartCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cartCount}
+                </span>
+              )}
             </a>
             <div className="dropdown">
               <a href="#" className="text-white text-decoration-none d-flex align-items-center"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Mi cuenta">
                 <i className="bi bi-person-circle fs-4"></i>
-                {usuario && <span className="ms-2">{usuario}</span>}
+                {usuario && <span className="ms-2">Hola, {usuario}</span>}
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 {!usuario && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}

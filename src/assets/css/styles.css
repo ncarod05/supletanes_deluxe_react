@@ -389,6 +389,23 @@ body {
 }
 
 .reseña-titulo {
-  color: #264653; /* o el color que uses en tu marca */
+  color: #264653;
   font-weight: 700;
+}
+
+/* Para poner el footer pegado abajo*/
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout-wrapper main {
+  flex-grow: 1;
 }

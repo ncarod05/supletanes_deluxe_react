@@ -1,7 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import Carrito from "./components/carrito";
 import HomePage from "./components/HomePage";
 import Usuario from "./components/usuario";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Pedidos from "./components/pedidos";
@@ -19,13 +20,33 @@ import ProductoIndividual4 from './components/ProductoIndividual4';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Resenas from "./components/resena";
+import Layout from './components/Layout';
 
 function App() {
+  const [cart, setCart] = useState(() => {
+    const guardado = localStorage.getItem("carrito");
+    return guardado ? JSON.parse(guardado) : [];
+  });
+  
+  // Cargar carrito desde localStorage al iniciar
+  useEffect(() => {
+    const guardado = localStorage.getItem("carrito");
+    if (guardado) {
+      setCart(JSON.parse(guardado));
+    }
+  }, []);
+
+  // Guardar carrito cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(cart));
+  }, [cart]);
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      {/* Rutas con layout */}
+      <Route element={<Layout cartCount={cart.length} />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart} />} />
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/admin" element={<AdminDashboard />} />
@@ -34,16 +55,17 @@ function App() {
         <Route path="/admin/usuarios" element={<AdminUsuarios />} />
         <Route path="/admin/reportes" element={<AdminReportes />} />
         <Route path="/quienes" element={<QuienesSomos />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/producto_individual" element={<ProductoIndividual />} />
-        <Route path="/producto_individual2" element={<ProductoIndividual2 />} />
-        <Route path="/producto_individual3" element={<ProductoIndividual3 />} />
-        <Route path="/producto_individual4" element={<ProductoIndividual4 />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/nuevousuario" element={<Register />} />
+        <Route path="/productos" element={<Productos setCart={setCart} />} />
+        <Route path="/producto_individual" element={<ProductoIndividual setCart={setCart} />} />
+        <Route path="/producto_individual2" element={<ProductoIndividual2 setCart={setCart} />} />
+        <Route path="/producto_individual3" element={<ProductoIndividual3 setCart={setCart} />} />
+        <Route path="/producto_individual4" element={<ProductoIndividual4 setCart={setCart} />} />
         <Route path="/resenas" element={<Resenas />} />
-      </Routes>
-    </BrowserRouter>
+      </Route>
+      {/* Rutas sin layout */}
+      <Route path="/login" element={<Login setCart={setCart} />} />
+      <Route path="/nuevousuario" element={<Register />} />
+    </Routes>
   );
 }
 

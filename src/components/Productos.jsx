@@ -1,13 +1,10 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
 import ProductCard from './ProductCard';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 function Productos() {
   return (
     <>
-      <Navbar />
       <main>
         <Container fluid className="p-4">
           <Row className="g-4">
@@ -98,7 +95,7 @@ function Productos() {
                 <Col sm={6} md={4} lg={3}>
                   <ProductCard
                     name="Multivitamínico Completo 60 caps"
-                    brand="Health Plus"
+                    brand="Sunvit Life"
                     description="Fórmula completa con vitaminas y minerales esenciales para tu salud diaria y energía."
                     price="$11.990"
                     oldPrice="$29.990"
@@ -125,7 +122,6 @@ function Productos() {
           </Row>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

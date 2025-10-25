@@ -1,12 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
-function ProductoIndividual() {
+function ProductoIndividual4({ setCart }) {
     return (
         <>
-            <Navbar />
             <main>
                 <Container className="my-5 product-page">
                     <Row>
@@ -158,9 +155,8 @@ function ProductoIndividual() {
                     </div>
                 </Container>
             </main>
-            <Footer />
         </>
     );
 }
 
-export default ProductoIndividual;
+export default ProductoIndividual4;
