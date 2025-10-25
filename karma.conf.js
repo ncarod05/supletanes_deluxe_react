@@ -12,12 +12,10 @@ module.exports = function (config) {
     //cargamos los archivos
     files: [
       { pattern: 'public/assets/img/**/*', watched: false, included: false, served: true, nocache: false }, // para las imagenes
-      'src/components/**/*.jsx',          // Componentes React
-      'src/tests/**/*.spec.jsx'           // Pruebas unitarias
+      { pattern: 'src/tests/**/*.spec.jsx', watched: false }           // Pruebas unitarias
     ],
 
     preprocessors: {
-      'src/**/*.jsx': ['webpack'],
       'src/tests/**/*.spec.jsx': ['webpack']
     },
 
@@ -28,6 +26,13 @@ module.exports = function (config) {
     browsers: ['ChromeHeadless'],
 
     // Ejecutar una sola vez
-    singleRun: true
+    singleRun: true,
+
+    // para tener una cobertura/reportes de las pruebas
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/',
+    },
   });
 };
