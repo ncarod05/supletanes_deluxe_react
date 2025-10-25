@@ -21,12 +21,20 @@ module.exports = {
             // Esto le dice a Babel que traduzca código JavaScript moderno y React
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
+
         },
       },
       {
         test: /\.css$/, // regla para CSS
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(js|jsx)$/,
+        include: path.resolve(__dirname, 'src'), // para el reporte, solo instrumenta código fuente
+        loader: 'coverage-istanbul-loader',
+        options: { esModules: true },
+        enforce: 'post'
+      }
     ],
-  },  
+  },
 };
