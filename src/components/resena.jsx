@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 
 const initialReviews = [
   {
@@ -59,7 +57,6 @@ const Resenas = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <Container className="my-5">
           <Row>
@@ -141,7 +138,6 @@ const Resenas = () => {
           </Row>
         </Container>
       </main>
-      <Footer />
     </>
   );
 };

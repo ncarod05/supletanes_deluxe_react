@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Table, Button, Modal, Form, Badge } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function AdminUsuarios() {
   const [usuarios, setUsuarios] = useState([
@@ -46,7 +44,6 @@ function AdminUsuarios() {
 
   return (
     <>
-      <Navbar />
       <Container className="mt-5">
         <h2 className="mb-4">Gestión de Usuarios</h2>
         <Button variant="success" className="mb-3" onClick={() => abrirModal()}>
@@ -82,7 +79,6 @@ function AdminUsuarios() {
           </tbody>
         </Table>
       </Container>
-      <Footer />
 
       {/* Modal */}
       <Modal show={showModal} onHide={cerrarModal}>

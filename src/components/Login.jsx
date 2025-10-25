@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import '../assets/css/Login.css';
+import { useNavigate } from 'react-router-dom';
 
-
-const Login = () => {
+const Login = ({ setCart }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  //navegar a la pagina principal
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-  // Permitir acceso con cualquier usuario/contraseña
-  setError('');
-  localStorage.setItem('usuario', email); // Guardar usuario temporal
-  window.location.href = '/'; // Redirigir a la página principal
+    e.preventDefault(); // Permitir acceso con cualquier usuario/contraseña
+    setError('');
+    localStorage.setItem('usuario', email); // Guardar usuario temporal
+
+    // Precargar productos al iniciar sesión
+    const productosIniciales = [
+      { nombre: "Prostar Whey Protein 5LB", cantidad: 1, precio: 59990 },
+      { nombre: "Multivitamínico Completo 60 caps", cantidad: 2, precio: 23980 },
+    ];
+
+    localStorage.setItem("carrito", JSON.stringify(productosIniciales));
+    setCart(productosIniciales);
+
+    window.location.href = '/'; // redirige
   };
 
   return (

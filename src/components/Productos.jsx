@@ -1,13 +1,26 @@
-import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-function Productos() {
+function Productos({ setCart }) {
+  const agregarAlCarrito = (producto) => {
+    setCart(prev => {
+      const existe = prev.find(p => p.nombre === producto.nombre);
+      if (existe) {
+        return prev.map(p =>
+          p.nombre === producto.nombre
+            ? { ...p, cantidad: p.cantidad + producto.cantidad }
+            : p
+        );
+      } else {
+        return [...prev, producto];
+      }
+    });
+
+    alert("Producto agregado al carrito 🛒");
+  };
   return (
     <>
-      <Navbar />
       <main>
         <Container fluid className="p-4">
           <Row className="g-4">
@@ -79,6 +92,11 @@ function Productos() {
                     oldPrice="$79.990"
                     image="/assets/img/Gold Standard 5LB.webp"
                     link="/producto_individual2"
+                    onAdd={() => agregarAlCarrito({
+                      nombre: "Gold Standard Whey 5LB",
+                      cantidad: 1,
+                      precio: 69990
+                    })}
                   />
                 </Col>
 
@@ -92,18 +110,28 @@ function Productos() {
                     oldPrice="$69.990"
                     image="/assets/img/Prostar 5LB.webp"
                     link="/producto_individual"
+                    onAdd={() => agregarAlCarrito({
+                      nombre: "Prostar Whey Protein 5LB",
+                      cantidad: 1,
+                      precio: 69990
+                    })}
                   />
                 </Col>
 
                 <Col sm={6} md={4} lg={3}>
                   <ProductCard
                     name="Multivitamínico Completo 60 caps"
-                    brand="Health Plus"
+                    brand="Sunvit Life"
                     description="Fórmula completa con vitaminas y minerales esenciales para tu salud diaria y energía."
                     price="$11.990"
                     oldPrice="$29.990"
                     image="/assets/img/Multivitaminico.jpg"
                     link="/producto_individual3"
+                    onAdd={() => agregarAlCarrito({
+                      nombre: "Multivitamínico Completo 60 caps",
+                      cantidad: 1,
+                      precio: 69990
+                    })}
                   />
                 </Col>
 
@@ -116,6 +144,11 @@ function Productos() {
                     oldPrice="$54.990"
                     image="/assets/img/creatina nutrex.webp"
                     link="/producto_individual4"
+                    onAdd={() => agregarAlCarrito({
+                      nombre: "Nutrex creatina monohidratada 1kg",
+                      cantidad: 1,
+                      precio: 69990
+                    })}
                   />
                 </Col>
 
@@ -125,7 +158,6 @@ function Productos() {
           </Row>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

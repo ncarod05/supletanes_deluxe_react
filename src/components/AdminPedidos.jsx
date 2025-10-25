@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Table, Button, Badge } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function AdminPedidos() {
   const [pedidos, setPedidos] = useState([
@@ -38,7 +36,6 @@ function AdminPedidos() {
 
   return (
     <>
-      <Navbar />
       <Container className="mt-5">
         <h2 className="mb-4">Pedidos de Usuarios</h2>
         <Table striped bordered hover responsive>
@@ -88,7 +85,6 @@ function AdminPedidos() {
           </tbody>
         </Table>
       </Container>
-      <Footer />
     </>
   );
 }

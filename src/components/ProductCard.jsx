@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-function ProductCard({ name, brand, description, price, oldPrice, image, link }) {
+function ProductCard({ name, brand, description, price, oldPrice, image, link, onAdd }) {
   return (
     <div className="card h-100 product-card position-relative">
       <span className="promo promo-sticker">¡Oferta!</span>
@@ -18,7 +18,7 @@ function ProductCard({ name, brand, description, price, oldPrice, image, link })
           <span className="me-2">{price}</span>
           <span className="old-price">{oldPrice}</span>
         </p>
-        <Button variant="success" className="mt-auto p-2">
+        <Button variant="success" className="mt-auto p-2" onClick={onAdd}>
           <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
         </Button>
       </div>

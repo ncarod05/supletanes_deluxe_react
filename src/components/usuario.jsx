@@ -1,11 +1,8 @@
 import React from "react";
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const Usuario = () => {
   return (
     <>
-      <Navbar />
       <main className="container my-5">
         <div className="row justify-content-center">
           <div className="col-md-8">
@@ -99,7 +96,6 @@ const Usuario = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
