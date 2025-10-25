@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 function ProductoIndividual3({ setCart }) {
+    const [cantidad, setCantidad] = useState(1);
+    const producto = {
+        nombre: "Multivitamínico Completo 60 caps",
+        cantidad: cantidad,
+        precio: 11990,
+    };
+
+    const agregarAlCarrito = () => {
+        const nuevoProducto = { ...producto };
+
+        // Leer carrito actual desde localStorage
+        const carritoActual = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        // Verificar si ya existe
+        const existe = carritoActual.find(p => p.nombre === nuevoProducto.nombre);
+        let actualizado;
+
+        if (existe) {
+            actualizado = carritoActual.map(p =>
+                p.nombre === nuevoProducto.nombre
+                    ? { ...p, cantidad: p.cantidad + 1 }
+                    : p
+            );
+        } else {
+            actualizado = [...carritoActual, nuevoProducto];
+        }
+
+        // Guardar en localStorage
+        localStorage.setItem("carrito", JSON.stringify(actualizado));
+
+        // Actualizar estado
+        setCart(actualizado);
+
+        //Alerta
+        alert("Producto agregado al carrito 🛒");
+    };
     return (
         <>
             <main>
@@ -45,7 +80,12 @@ function ProductoIndividual3({ setCart }) {
 
                             <Form.Group className="mb-3 w-25">
                                 <Form.Label>Cantidad:</Form.Label>
-                                <Form.Control type="number" min={1} defaultValue={1} />
+                                <Form.Control
+                                    type="number"
+                                    min={1}
+                                    value={cantidad}
+                                    onChange={e => setCantidad(Number(e.target.value))}
+                                />
                             </Form.Group>
 
                             <Form.Group className="mb-3 w-50">
@@ -57,7 +97,7 @@ function ProductoIndividual3({ setCart }) {
                             </Form.Group>
 
                             <div className="d-flex gap-3 mb-3">
-                                <Button variant="success" size="lg" className="flex-grow-1">
+                                <Button variant="success" size="lg" className="flex-grow-1" onClick={agregarAlCarrito}>
                                     <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
                                 </Button>
                                 <Button variant="outline-danger" size="lg" className="flex-grow-1">
@@ -71,7 +111,7 @@ function ProductoIndividual3({ setCart }) {
                         <Col md={6}>
                             <h4>Descripción del producto</h4>
                             <p>
-                                Multi Men es un multivitamínico sugerido para hombres con el fin de incrementar su ingesta de vitaminas, minerales y nutrientes esenciales para ellos. 
+                                Multi Men es un multivitamínico sugerido para hombres con el fin de incrementar su ingesta de vitaminas, minerales y nutrientes esenciales para ellos.
                                 Contiene vitaminas del complejo B para mejorar la memoria y concentración; además de todas las vitaminas y minerales que tu cuerpo necesita.
                             </p>
                             <ul>

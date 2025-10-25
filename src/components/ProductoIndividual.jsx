@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
 
 function ProductoIndividual({ setCart }) {
+    const [cantidad, setCantidad] = useState(1);
     const producto = {
         nombre: "Prostar Whey Protein 5LB",
-        cantidad: 1,
+        cantidad: cantidad,
         precio: 59990,
-    };
-
-    const [cantidad, setCantidad] = useState(1);
+    }; 
 
     const agregarAlCarrito = () => {
         const nuevoProducto = { ...producto };
@@ -40,8 +38,6 @@ function ProductoIndividual({ setCart }) {
         //Alerta
         alert("Producto agregado al carrito 🛒");
     };
-
-    const navigate = useNavigate();
 
     return (
         <>

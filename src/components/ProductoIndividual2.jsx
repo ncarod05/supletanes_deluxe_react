@@ -1,7 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table, Badge } from 'react-bootstrap';
 
 function ProductoIndividual2({ setCart }) {
+    const [cantidad, setCantidad] = useState(1);
+    const producto = {
+        nombre: "Gold Standard Whey 5LB",
+        cantidad: cantidad,
+        precio: 69990,
+    };
+
+    const agregarAlCarrito = () => {
+        const nuevoProducto = { ...producto };
+
+        // Leer carrito actual desde localStorage
+        const carritoActual = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        // Verificar si ya existe
+        const existe = carritoActual.find(p => p.nombre === nuevoProducto.nombre);
+        let actualizado;
+
+        if (existe) {
+            actualizado = carritoActual.map(p =>
+                p.nombre === nuevoProducto.nombre
+                    ? { ...p, cantidad: p.cantidad + 1 }
+                    : p
+            );
+        } else {
+            actualizado = [...carritoActual, nuevoProducto];
+        }
+
+        // Guardar en localStorage
+        localStorage.setItem("carrito", JSON.stringify(actualizado));
+
+        // Actualizar estado
+        setCart(actualizado);
+
+        //Alerta
+        alert("Producto agregado al carrito 🛒");
+    };
+
     return (
         <>
             <main>
@@ -48,7 +85,12 @@ function ProductoIndividual2({ setCart }) {
 
                             <Form.Group className="mb-3 w-25">
                                 <Form.Label>Cantidad:</Form.Label>
-                                <Form.Control type="number" min={1} defaultValue={1} />
+                                <Form.Control
+                                    type="number"
+                                    min={1}
+                                    value={cantidad}
+                                    onChange={e => setCantidad(Number(e.target.value))}
+                                />
                             </Form.Group>
 
                             <Form.Group className="mb-3 w-50">
@@ -60,7 +102,7 @@ function ProductoIndividual2({ setCart }) {
                             </Form.Group>
 
                             <div className="d-flex gap-3 mb-3">
-                                <Button variant="success" size="lg" className="flex-grow-1">
+                                <Button variant="success" size="lg" className="flex-grow-1" onClick={agregarAlCarrito}>
                                     <i className="bi bi-cart-plus me-1"></i> Agregar al carrito
                                 </Button>
                                 <Button variant="outline-danger" size="lg" className="flex-grow-1">
