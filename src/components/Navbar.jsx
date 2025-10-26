@@ -1,19 +1,50 @@
 import React, { useEffect, useState } from 'react';
 
-function Navbar({ cartCount }) {
-  const isAdmin = true; // Simulación de usuario administrador
-  const [usuario, setUsuario] = useState(null);
+const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
+
+const readStoredUser = () => {
+  try {
+    for (const k of STORAGE_KEYS) {
+      const raw = localStorage.getItem(k) || sessionStorage.getItem(k);
+      if (!raw) continue;
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object') return parsed;
+      } catch (err) {
+        // si no es JSON válido, devolverlo como email/texto
+        return { nombre: '', email: String(raw) };
+      }
+    }
+  } catch (e) {
+    console.warn('Error leyendo usuario desde storage', e);
+  }
+  return { nombre: '', email: '' };
+};
+
+function Navbar({ cartCount = 0 }) {
+  const [storedUser, setStoredUser] = useState(() => readStoredUser());
 
   useEffect(() => {
-    const user = localStorage.getItem('usuario');
-    setUsuario(user);
+    const onUpdate = (e) => {
+      setStoredUser(e?.detail ? e.detail : readStoredUser());
+    };
+    window.addEventListener('userUpdated', onUpdate);
+    return () => window.removeEventListener('userUpdated', onUpdate);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('usuario');
-    localStorage.removeItem("carrito");
-    window.location.href = '/';
+    try {
+      STORAGE_KEYS.forEach(k => localStorage.removeItem(k));
+      STORAGE_KEYS.forEach(k => sessionStorage.removeItem(k));
+    } catch (e) {
+      console.warn('Error limpiando storage en logout', e);
+    }
+    setStoredUser({ nombre: '', email: '' });
+    // usar la página de logout para UX consistente
+    window.location.href = '/logout';
   };
+
+  const hasUser = (storedUser && (storedUser.nombre || storedUser.email));
 
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
@@ -35,7 +66,9 @@ function Navbar({ cartCount }) {
               <a className="nav-link custom-link" href="/quienes">Quienes somos</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link custom-link" href="/login">Iniciar Sesión</a>
+              {!hasUser && (
+                <a className="nav-link custom-link" href="/login">Iniciar Sesión</a>
+              )}
             </li>
           </ul>
           <form className="d-flex align-items-center" role="search">
@@ -55,15 +88,20 @@ function Navbar({ cartCount }) {
               <a href="#" className="text-white text-decoration-none d-flex align-items-center"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Mi cuenta">
                 <i className="bi bi-person-circle fs-4"></i>
-                {usuario && <span className="ms-2">Hola, {usuario}</span>}
+                {hasUser && (
+                  <div className="ms-2 d-flex flex-column text-start">
+                    <span className="fw-bold" style={{lineHeight: 1}}>{storedUser.nombre || ''}</span>
+                    <span className="small text-light">{storedUser.email || ''}</span>
+                  </div>
+                )}
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                {!usuario && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}
-                {!usuario && <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>}
-                {usuario && isAdmin && <li><a className="dropdown-item" href="/admin">Panel Admin</a></li>}
-                {usuario && <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>}
-                {usuario && <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>}
-                {usuario && <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>}
+                {!hasUser && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}
+                {!hasUser && <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>}
+                {hasUser && <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>}
+                {hasUser && <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>}
+                <li><hr className="dropdown-divider" /></li>
+                {hasUser && <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>}
               </ul>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Carrito from "./components/carrito";
 import HomePage from "./components/HomePage";
 import Usuario from "./components/usuario";
-import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Pedidos from "./components/pedidos";
@@ -19,6 +19,7 @@ import ProductoIndividual3 from './components/ProductoIndividual3';
 import ProductoIndividual4 from './components/ProductoIndividual4';
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
 import Resenas from "./components/resena";
 import Layout from './components/Layout';
 
@@ -43,29 +44,31 @@ function App() {
 
   return (
     <Routes>
-      {/* Rutas con layout */}
-      <Route element={<Layout cartCount={cart.length} />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart} />} />
-        <Route path="/usuario" element={<Usuario />} />
-        <Route path="/pedidos" element={<Pedidos />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/productos" element={<AdminProductos />} />
-        <Route path="/admin/pedidos" element={<AdminPedidos />} />
-        <Route path="/admin/usuarios" element={<AdminUsuarios />} />
-        <Route path="/admin/reportes" element={<AdminReportes />} />
-        <Route path="/quienes" element={<QuienesSomos />} />
-        <Route path="/productos" element={<Productos setCart={setCart} />} />
-        <Route path="/producto_individual" element={<ProductoIndividual setCart={setCart} />} />
-        <Route path="/producto_individual2" element={<ProductoIndividual2 setCart={setCart} />} />
-        <Route path="/producto_individual3" element={<ProductoIndividual3 setCart={setCart} />} />
-        <Route path="/producto_individual4" element={<ProductoIndividual4 setCart={setCart} />} />
-        <Route path="/resenas" element={<Resenas />} />
-      </Route>
-      {/* Rutas sin layout */}
-      <Route path="/login" element={<Login setCart={setCart} />} />
-      <Route path="/nuevousuario" element={<Register />} />
-    </Routes>
+        {/* Rutas con layout */}
+        <Route element={<Layout cartCount={cart.length} />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart} />} />
+          <Route path="/usuario" element={<Usuario />} />
+          <Route path="/pedidos" element={<Pedidos />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
+          <Route path="/admin/pedidos" element={<AdminPedidos />} />
+          <Route path="/admin/usuarios" element={<AdminUsuarios />} />
+          <Route path="/admin/reportes" element={<AdminReportes />} />
+          <Route path="/quienes" element={<QuienesSomos />} />
+          <Route path="/productos" element={<Productos setCart={setCart} />} />
+          <Route path="/producto_individual" element={<ProductoIndividual setCart={setCart} />} />
+          <Route path="/producto_individual2" element={<ProductoIndividual2 setCart={setCart} />} />
+          <Route path="/producto_individual3" element={<ProductoIndividual3 setCart={setCart} />} />
+          <Route path="/producto_individual4" element={<ProductoIndividual4 setCart={setCart} />} />
+          <Route path="/resenas" element={<Resenas />} />
+        </Route>
+
+        {/* Rutas sin layout */}
+        <Route path="/login" element={<Login setCart={setCart} />} />
+        <Route path="/nuevousuario" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
   );
 }
 
