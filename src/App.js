@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Pedidos from "./components/pedidos";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/login" element={<Login />} />
+  <Route path="/logout" element={<Logout />} />
         <Route path="/nuevousuario" element={<Register />} />
       </Routes>
     </BrowserRouter>
