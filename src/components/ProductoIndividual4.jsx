@@ -189,7 +189,7 @@ function ProductoIndividual4({ setCart }) {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/resenas" className="button btn btn-danger">
+                            <a href="/resenas" className="button button-lg">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>

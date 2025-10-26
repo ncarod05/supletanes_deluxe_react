@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../assets/css/Register.css';
-import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
 
@@ -162,7 +161,6 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

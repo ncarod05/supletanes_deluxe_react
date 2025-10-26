@@ -196,7 +196,7 @@ function ProductoIndividual({ setCart }) {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/resenas" className="button">
+                            <a href="/resenas" className="button button-lg">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>
