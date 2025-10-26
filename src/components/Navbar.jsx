@@ -40,8 +40,11 @@ function Navbar({ cartCount = 0 }) {
       console.warn('Error limpiando storage en logout', e);
     }
     setStoredUser({ nombre: '', email: '' });
-    // usar la página de logout para UX consistente
-    window.location.href = '/logout';
+
+    // Evitar recarga si estamos en entorno de test, para validar cierre de sesion
+    if (!window.__TEST_MODE__) {
+      window.location.href = '/logout'; // enviar a logout
+    }
   };
 
   const hasUser = (storedUser && (storedUser.nombre || storedUser.email));
@@ -90,7 +93,7 @@ function Navbar({ cartCount = 0 }) {
                 <i className="bi bi-person-circle fs-4"></i>
                 {hasUser && (
                   <div className="ms-2 d-flex flex-column text-start">
-                    <span className="fw-bold" style={{lineHeight: 1}}>{storedUser.nombre || ''}</span>
+                    <span className="fw-bold" style={{ lineHeight: 1 }}>{storedUser.nombre || ''}</span>
                     <span className="small text-light">{storedUser.email || ''}</span>
                   </div>
                 )}

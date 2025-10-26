@@ -22,4 +22,18 @@ describe('Navbar', () => {
     render(<Navbar cartCount={5} />);
     expect(screen.getByText('5')).not.toBeNull();
   });
+
+  it('permite cerrar sesión y borra el usuario', () => {
+    window.__TEST_MODE__ = true;
+    
+    const mockUser = { nombre: 'Juan', email: 'juan@mail.com' };
+    localStorage.setItem('loggedUser', JSON.stringify(mockUser));
+
+    render(<Navbar cartCount={0} />);
+    fireEvent.click(screen.getByText('Cerrar sesión'));
+
+    expect(localStorage.getItem('loggedUser')).toBeNull();
+
+    delete window.__TEST_MODE__;
+  });
 });
