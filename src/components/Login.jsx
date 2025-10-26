@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Login.css';
+import '../assets/css/Login.css';
 import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
@@ -27,15 +27,15 @@ const saveTemp = (payload) => {
   }
 };
 
-const Login = () => {
+const Login = ({ setCart }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Prefill email if existe en storage
+    // Prefill email si existe en storage
     try {
-      const keys = ['loggedUser','user','usuario'];
+      const keys = STORAGE_KEYS;
       for (const k of keys) {
         const raw = localStorage.getItem(k) || sessionStorage.getItem(k);
         if (!raw) continue;
@@ -58,11 +58,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Permitir acceso con cualquier usuario/contraseña (mock)
     setError('');
+
     const payload = { nombre: '', email: email, telefono: '', direccion: '' };
+    // Guardar en varias claves para compatibilidad con el resto de la app
     saveTemp(payload);
-    // Redirigir a la página principal
+
+    // Precargar datos de admin y carrito si no existen
+    if (!localStorage.getItem('adminProductos')) {
+      const productosAdminIniciales = [
+        { id: 1, nombre: 'Proteína Whey', precio: 19990, descripcion: 'Proteína de suero', categoria: 'Proteína', stock: 36 },
+        { id: 2, nombre: 'Creatina Monohidratada', precio: 14990, descripcion: 'Creatina para fuerza', categoria: 'Creatina', stock: 67 }
+      ];
+      localStorage.setItem('adminProductos', JSON.stringify(productosAdminIniciales));
+    }
+
+    const productosIniciales = [
+      { nombre: "Prostar Whey Protein 5LB", cantidad: 1, precio: 59990 },
+      { nombre: "Multivitamínico Completo 60 caps", cantidad: 2, precio: 23980 },
+    ];
+    localStorage.setItem("carrito", JSON.stringify(productosIniciales));
+    if (typeof setCart === 'function') setCart(productosIniciales);
+
     window.location.href = '/';
   };
 
@@ -87,6 +104,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <div className="form-text text-center mb-2">¿No tienes una cuenta? <a href="/nuevousuario" className="link-primary">Crear cuenta</a></div>
         <button type="submit">Entrar</button>
           </form>
         </div>

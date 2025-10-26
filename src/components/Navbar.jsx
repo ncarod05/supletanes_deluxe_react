@@ -21,7 +21,7 @@ const readStoredUser = () => {
   return { nombre: '', email: '' };
 };
 
-function Navbar() {
+function Navbar({ cartCount = 0 }) {
   const [storedUser, setStoredUser] = useState(() => readStoredUser());
 
   useEffect(() => {
@@ -40,7 +40,8 @@ function Navbar() {
       console.warn('Error limpiando storage en logout', e);
     }
     setStoredUser({ nombre: '', email: '' });
-    window.location.href = '/';
+    // usar la página de logout para UX consistente
+    window.location.href = '/logout';
   };
 
   const hasUser = (storedUser && (storedUser.nombre || storedUser.email));
@@ -65,7 +66,9 @@ function Navbar() {
               <a className="nav-link custom-link" href="/quienes">Quienes somos</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link custom-link" href="/login">Iniciar Sesión</a>
+              {!hasUser && (
+                <a className="nav-link custom-link" href="/login">Iniciar Sesión</a>
+              )}
             </li>
           </ul>
           <form className="d-flex align-items-center" role="search">
@@ -75,6 +78,11 @@ function Navbar() {
           <div className="d-flex align-items-center gap-3">
             <a href="/carrito" className="text-white text-decoration-none position-relative" title="Carrito de compras">
               <i className="bi bi-cart3 fs-4"></i>
+              {cartCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cartCount}
+                </span>
+              )}
             </a>
             <div className="dropdown">
               <a href="#" className="text-white text-decoration-none d-flex align-items-center"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Register.css';
+import '../assets/css/Register.css';
 import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];

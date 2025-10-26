@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
 
@@ -84,11 +82,8 @@ const Usuario = () => {
   };
 
   return (
-    <div className="page-root">
-      <div className="page-content">
-        <Navbar />
-        <main className="container my-5">
-        <div className="row justify-content-center">
+    <div className="container my-5">
+      <div className="row justify-content-center">
           <div className="col-md-8">
             <div className="card shadow-sm">
               <div className="card usuario-card shadow-sm">
@@ -180,7 +175,7 @@ const Usuario = () => {
                 </div>
                 <div className="text-end">
                   <span className="badge bg-success mb-2">Entregado</span><br />
-                  <a href="/reseñas" className="btn btn-outline-primary btn-sm">
+                  <a href="/resenas" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-pencil-square me-1"></i> Dejar reseña
                   </a>
                 </div>
@@ -225,9 +220,6 @@ const Usuario = () => {
             </div>
           </section>
         </div>
-        </main>
-      </div>
-      <Footer />
     </div>
   );
 };

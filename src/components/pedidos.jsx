@@ -1,11 +1,8 @@
 import React from "react";
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const Pedidos = () => {
   return (
     <>
-      <Navbar />
       <main className="container my-5">
         <h2 className="mb-4 text-center">Historial de Pedidos</h2>
         <div className="table-responsive">
@@ -31,7 +28,7 @@ const Pedidos = () => {
                   <a href="/producto_individual" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-eye"></i> Ver detalle
                   </a>
-                  <a href="/reseñas" className="btn btn-outline-primary btn-sm">
+                  <a href="/resenas" className="btn btn-outline-primary btn-sm">
                     <i className="bi bi-pencil-square me-1"></i> Dejar reseña
                   </a>
                 </td>
@@ -64,7 +61,6 @@ const Pedidos = () => {
           </table>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
