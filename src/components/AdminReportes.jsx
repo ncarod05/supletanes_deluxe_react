@@ -1,7 +1,5 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function AdminReportes() {
   // Datos simulados
@@ -12,7 +10,6 @@ function AdminReportes() {
 
   return (
     <>
-      <Navbar />
       <Container className="mt-5">
         <h2 className="mb-4">Reportes y Estadísticas</h2>
         <Row className="mb-4">
@@ -59,7 +56,6 @@ function AdminReportes() {
           </Card.Body>
         </Card>
       </Container>
-      <Footer />
     </>
   );
 }

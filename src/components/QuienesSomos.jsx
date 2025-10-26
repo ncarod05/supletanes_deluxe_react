@@ -1,12 +1,9 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 function QuienesSomos() {
   return (
     <>
-      <Navbar />
       <main className="container my-5">
         {/* Carrusel */}
         <div id="carouselExampleCaptions" className="carousel slide mb-5" data-bs-ride="carousel">
@@ -79,7 +76,6 @@ function QuienesSomos() {
           <hr className="my-4" />
         </div>
       </main>
-      <Footer />
     </>
   );
 }
