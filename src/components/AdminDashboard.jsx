@@ -6,7 +6,7 @@ function AdminDashboard() {
     <>
       <main className="mt-5">
         <Container>
-          <h2 className="mb-4 text-center">Panel de Administrador</h2>
+          <h2 className="mb-2 text-center">Panel de Administrador</h2>
           <Row className="justify-content-center">
               <Col md={3} className='d-flex'>
                 <i class="bi bi-person-vcard" style={{ fontSize: '18rem', color: '#264653' }}></i>

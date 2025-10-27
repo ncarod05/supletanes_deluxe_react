@@ -80,7 +80,7 @@ const Register = () => {
 
       setSuccess(true);
       setTimeout(() => {
-        // redirigir (o cambiar según tu router)
+        // redirigir
         window.location.href = '/';
       }, 1200);
     } else {

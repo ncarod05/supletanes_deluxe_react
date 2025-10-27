@@ -11,16 +11,6 @@ html, body, #root {
   height: 100%;
 }
 
-/* Page layout helper: make footer stick to bottom when content is short */
-.page-root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.page-content {
-  flex: 1 0 auto;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

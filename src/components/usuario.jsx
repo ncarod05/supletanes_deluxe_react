@@ -11,7 +11,6 @@ const readStored = () => {
         const parsed = JSON.parse(raw);
         return { nombre: parsed.nombre || '', email: parsed.email || '', telefono: parsed.telefono || '', direccion: parsed.direccion || '' };
       } catch (e) {
-        // raw is plain string (email)
         return { nombre: '', email: String(raw), telefono: '', direccion: '' };
       }
     }

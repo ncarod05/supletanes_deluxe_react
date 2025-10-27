@@ -31,7 +31,7 @@ const Logout = () => {
   const [count, setCount] = useState(3);
 
   useEffect(() => {
-    // clear storage and notify immediately so UI updates
+    // limpiar almacenamiento y notificar cambio
     clearUserStorage();
     notifyUserUpdated({ nombre: '', email: '' });
 
@@ -41,7 +41,7 @@ const Logout = () => {
 
     const redirect = setTimeout(() => {
       clearInterval(t);
-      // Redirect to home
+      // redireccionar a home
       window.location.href = '/';
     }, 3000);
 

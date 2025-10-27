@@ -116,8 +116,7 @@ h3 {
 }
 
 .product-card .button {
-  margin-top: auto;
-  /* fuerza el botón al final */
+  margin-top: auto; /* fuerza el botón al final */
 }
 
 .card-link {
@@ -162,21 +161,15 @@ h3 {
 /* Solo afecta los precios dentro de la página de producto */
 .product-page .price-container-vertical .old-price {
   font-size: 18px;
-  /* más grande que en las cards */
   margin-left: 10px;
 }
 
 .product-page .price-container-vertical .card-price-highlight {
   font-size: 30px;
-  /* más grande */
   font-weight: 600;
-  /* más pesado */
   padding: 10px 20px;
-  /* más espacio */
   border-radius: 12px;
-  /* bordes más redondeados */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  /* sombra más marcada */
 }
 
 /* Solo afecta la tabla en la página de producto */
@@ -205,19 +198,14 @@ h3 {
 
 .product-page .section-box {
   border: 1px solid #e0e0e0;
-  /* borde gris suave */
   border-radius: 10px;
-  /* esquinas redondeadas */
   padding: 20px;
-  /* espacio interno */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-  /* sombra ligera */
 }
 
 /* Barra lateral en productos*/
 .sidebar {
   background-color: #264653;
-  /* azul verdoso */
   color: #FFFFFF;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -226,7 +214,6 @@ h3 {
 .sidebar h5,
 .sidebar-title {
   color: #FFD166;
-  /* amarillo */
   font-family: 'Bebas Neue', cursive;
   letter-spacing: 1px;
 }
@@ -244,10 +231,8 @@ h3 {
 
 /*Carrusel banner del Index */
 .carousel-banner .carousel-item img {
-  max-height: 500px;
-  /* controla la altura */
-  object-fit: cover;
-  /* ajusta la imagen sin deformarla */
+  max-height: 500px; /* controla la altura */
+  object-fit: cover; /* ajusta la imagen sin deformarla */
 }
 
 .carousel-banner .carousel-caption {
@@ -265,7 +250,6 @@ h3 {
   font-family: 'Bebas Neue', cursive;
   font-size: 70px;
   color: #FFD166;
-  /* amarillo de tu paleta */
   text-shadow: 2px 2px 6px #000;
 }
 
@@ -420,14 +404,6 @@ body {
 }
 
 /* Para poner el footer pegado abajo*/
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .layout-wrapper {
   display: flex;
   flex-direction: column;
