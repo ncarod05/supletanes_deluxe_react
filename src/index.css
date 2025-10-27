@@ -11,6 +11,18 @@ html, body, #root {
   height: 100%;
 }
 
+/* para tener el logout centrado */
+.page-root {
+  height: 100vh;
+  display: flex;
+}
+.page-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

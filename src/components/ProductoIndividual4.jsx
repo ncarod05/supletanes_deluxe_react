@@ -67,6 +67,13 @@ function ProductoIndividual4({ setCart }) {
                                 <span className="old-price ms-2">$54.990</span>
                             </div>
 
+                            <Form.Group className="mb-3 w-50">
+                                <Form.Label>Sabor:</Form.Label>
+                                <Form.Select>
+                                    <option value="chocolate">Sin Sabor</option>
+                                </Form.Select>
+                            </Form.Group>
+
                             <div className="mb-3">
                                 <Badge bg="success"><i className="bi bi-check-circle me-1"></i> Disponible</Badge>
                                 <p className="text-muted mt-1">Unidades restantes: <strong>24</strong></p>
