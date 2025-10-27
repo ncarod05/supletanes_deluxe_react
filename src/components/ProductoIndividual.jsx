@@ -84,8 +84,9 @@ function ProductoIndividual({ setCart }) {
                             </div>
 
                             <Form.Group className="mb-3 w-25">
-                                <Form.Label>Cantidad:</Form.Label>
+                                <Form.Label htmlFor="cantidadInput">Cantidad:</Form.Label>
                                 <Form.Control
+                                    id="cantidadInput"
                                     type="number"
                                     min={1}
                                     value={cantidad}

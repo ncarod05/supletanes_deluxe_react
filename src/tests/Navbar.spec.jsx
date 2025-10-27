@@ -36,4 +36,10 @@ describe('Navbar', () => {
 
     delete window.__TEST_MODE__;
   });
+
+  it('muestra opcion de login si no hay usuario', () => {
+    render(<Navbar cartCount={0} />);
+
+    expect(screen.getAllByText('Iniciar Sesión')[0]).not.toBeNull();
+  });
 });

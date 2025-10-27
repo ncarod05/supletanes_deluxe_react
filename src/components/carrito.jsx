@@ -67,6 +67,7 @@ const Carrito = ({ cart, setCart }) => {
                         <button
                           className="btn btn-outline-danger btn-sm btn-eliminar"
                           onClick={() => handleEliminar(idx)}
+                          aria-label={`Eliminar ${item.nombre}`}
                         >
                           <i className="bi bi-trash"></i>
                         </button>
