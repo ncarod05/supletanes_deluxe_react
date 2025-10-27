@@ -12,7 +12,7 @@ function TopProducts() {
               <img src="/assets/img/Gold Standard 5LB.webp" className="img-fluid mb-3" alt="Proteina En Polvo" />
               <h5 className="mb-2">Proteina En Polvo</h5>
               <p>Aporta proteínas de alta calidad de forma rápida y sencilla a nuestro organismo...</p>
-              <button className="button w-100">Ver más</button>
+              <button className="button button-lg w-100">Ver más</button>
             </div>
           </div>
 
@@ -22,7 +22,7 @@ function TopProducts() {
               <img src="/assets/img/Platinum Creatine.jpg" className="img-fluid mb-3" alt="Creatina Monohidratada" />
               <h5 className="mb-2">Creatina Monohidratada</h5>
               <p>La creatina es uno de los suplementos más populares y con más evidencia científica...</p>
-              <button className="button w-100">Ver más</button>
+              <button className="button button-lg w-100">Ver más</button>
             </div>
           </div>
 
@@ -32,7 +32,7 @@ function TopProducts() {
               <img src="/assets/img/Multivitaminico.jpg" className="img-fluid mb-3" alt="Multivitamínicos" />
               <h5 className="mb-2">Multivitamínicos</h5>
               <p>Los multivitamínicos sirven para suplementar la dieta y aportar las vitaminas y minerales necesarios...</p>
-              <button className="button w-100">Ver más</button>
+              <button className="button button-lg w-100">Ver más</button>
             </div>
           </div>
         </div>

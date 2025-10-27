@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/css/Login.css';
-import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
 
@@ -60,9 +59,24 @@ const Login = ({ setCart }) => {
     e.preventDefault();
     setError('');
 
-    const payload = { nombre: '', email: email, telefono: '', direccion: '' };
+    const isAdmin = email === 'admin@gmail.com';
+    const payload = {
+      nombre: isAdmin ? 'Administrador' : '',
+      email,
+      telefono: '',
+      direccion: '',
+      rol: isAdmin ? 'admin' : 'usuario'
+    };
+    
     // Guardar en varias claves para compatibilidad con el resto de la app
     saveTemp(payload);
+
+    const productosIniciales = [
+      { nombre: "Prostar Whey Protein 5LB", cantidad: 1, precio: 59990 },
+      { nombre: "Multivitamínico Completo 60 caps", cantidad: 2, precio: 23980 },
+    ];
+    localStorage.setItem("carrito", JSON.stringify(productosIniciales));
+    if (typeof setCart === 'function') setCart(productosIniciales);
 
     // Precargar datos de admin y carrito si no existen
     if (!localStorage.getItem('adminProductos')) {
@@ -73,13 +87,6 @@ const Login = ({ setCart }) => {
       localStorage.setItem('adminProductos', JSON.stringify(productosAdminIniciales));
     }
 
-    const productosIniciales = [
-      { nombre: "Prostar Whey Protein 5LB", cantidad: 1, precio: 59990 },
-      { nombre: "Multivitamínico Completo 60 caps", cantidad: 2, precio: 23980 },
-    ];
-    localStorage.setItem("carrito", JSON.stringify(productosIniciales));
-    if (typeof setCart === 'function') setCart(productosIniciales);
-
     window.location.href = '/';
   };
 
@@ -88,28 +95,27 @@ const Login = ({ setCart }) => {
       <div className="page-content">
         <div className="login-container">
           <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Iniciar Sesión</h2>
-        {error && <div className="login-error">{error}</div>}
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <div className="form-text text-center mb-2">¿No tienes una cuenta? <a href="/nuevousuario" className="link-primary">Crear cuenta</a></div>
-        <button type="submit">Entrar</button>
+            <h2>Iniciar Sesión</h2>
+            {error && <div className="login-error">{error}</div>}
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <div className="form-text text-center mb-2">¿No tienes una cuenta? <a href="/nuevousuario" className="link-primary">Crear cuenta</a></div>
+            <button type="submit">Entrar</button>
           </form>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

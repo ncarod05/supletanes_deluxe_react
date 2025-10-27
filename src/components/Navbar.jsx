@@ -24,6 +24,9 @@ const readStoredUser = () => {
 function Navbar({ cartCount = 0 }) {
   const [storedUser, setStoredUser] = useState(() => readStoredUser());
 
+  const hasUser = storedUser && (storedUser.nombre || storedUser.email);
+  const isAdmin = storedUser && storedUser.rol === 'admin';
+
   useEffect(() => {
     const onUpdate = (e) => {
       setStoredUser(e?.detail ? e.detail : readStoredUser());
@@ -36,15 +39,17 @@ function Navbar({ cartCount = 0 }) {
     try {
       STORAGE_KEYS.forEach(k => localStorage.removeItem(k));
       STORAGE_KEYS.forEach(k => sessionStorage.removeItem(k));
+      localStorage.removeItem('carrito'); // limpiar carrito al cerrar sesión
     } catch (e) {
       console.warn('Error limpiando storage en logout', e);
     }
     setStoredUser({ nombre: '', email: '' });
-    // usar la página de logout para UX consistente
-    window.location.href = '/logout';
-  };
 
-  const hasUser = (storedUser && (storedUser.nombre || storedUser.email));
+    // Evitar recarga si estamos en entorno de test, para validar cierre de sesion
+    if (!window.__TEST_MODE__) {
+      window.location.href = '/logout'; // enviar a logout
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
@@ -73,7 +78,7 @@ function Navbar({ cartCount = 0 }) {
           </ul>
           <form className="d-flex align-items-center" role="search">
             <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
-            <button className="btn btn-danger me-3" type="submit">Buscar</button>
+            <button className="button me-3" type="submit">Buscar</button>
           </form>
           <div className="d-flex align-items-center gap-3">
             <a href="/carrito" className="text-white text-decoration-none position-relative" title="Carrito de compras">
@@ -90,7 +95,7 @@ function Navbar({ cartCount = 0 }) {
                 <i className="bi bi-person-circle fs-4"></i>
                 {hasUser && (
                   <div className="ms-2 d-flex flex-column text-start">
-                    <span className="fw-bold" style={{lineHeight: 1}}>{storedUser.nombre || ''}</span>
+                    <span className="fw-bold" style={{ lineHeight: 1 }}>{storedUser.nombre || ''}</span>
                     <span className="small text-light">{storedUser.email || ''}</span>
                   </div>
                 )}
@@ -98,9 +103,10 @@ function Navbar({ cartCount = 0 }) {
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 {!hasUser && <li><a className="dropdown-item" href="/login">Iniciar Sesión</a></li>}
                 {!hasUser && <li><a className="dropdown-item" href="/nuevousuario">Crear Cuenta</a></li>}
+                {isAdmin && <li><a className="dropdown-item" href="/admin">Panel de Administrador</a></li>}
                 {hasUser && <li><a className="dropdown-item" href="/usuario">Mi Perfil</a></li>}
                 {hasUser && <li><a className="dropdown-item" href="/pedidos">Mis Pedidos</a></li>}
-                <li><hr className="dropdown-divider" /></li>
+                {hasUser && <li><hr className="dropdown-divider" /></li>}
                 {hasUser && <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>}
               </ul>
             </div>

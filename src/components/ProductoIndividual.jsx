@@ -84,8 +84,9 @@ function ProductoIndividual({ setCart }) {
                             </div>
 
                             <Form.Group className="mb-3 w-25">
-                                <Form.Label>Cantidad:</Form.Label>
+                                <Form.Label htmlFor="cantidadInput">Cantidad:</Form.Label>
                                 <Form.Control
+                                    id="cantidadInput"
                                     type="number"
                                     min={1}
                                     value={cantidad}
@@ -196,7 +197,7 @@ function ProductoIndividual({ setCart }) {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/resenas" className="button">
+                            <a href="/resenas" className="button button-lg">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>

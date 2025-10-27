@@ -67,6 +67,13 @@ function ProductoIndividual4({ setCart }) {
                                 <span className="old-price ms-2">$54.990</span>
                             </div>
 
+                            <Form.Group className="mb-3 w-50">
+                                <Form.Label>Sabor:</Form.Label>
+                                <Form.Select>
+                                    <option value="chocolate">Sin Sabor</option>
+                                </Form.Select>
+                            </Form.Group>
+
                             <div className="mb-3">
                                 <Badge bg="success"><i className="bi bi-check-circle me-1"></i> Disponible</Badge>
                                 <p className="text-muted mt-1">Unidades restantes: <strong>24</strong></p>
@@ -189,7 +196,7 @@ function ProductoIndividual4({ setCart }) {
                         </div>
 
                         <div className="text-center mt-4">
-                            <a href="/resenas" className="button btn btn-danger">
+                            <a href="/resenas" className="button button-lg">
                                 <i className="bi bi-chat-left-text me-1"></i> Ver todas las reseñas
                             </a>
                         </div>

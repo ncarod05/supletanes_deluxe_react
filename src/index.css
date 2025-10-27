@@ -11,14 +11,16 @@ html, body, #root {
   height: 100%;
 }
 
-/* Page layout helper: make footer stick to bottom when content is short */
+/* para tener el logout centrado */
 .page-root {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
 }
 .page-content {
-  flex: 1 0 auto;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 code {

@@ -47,7 +47,6 @@ describe('ProductCard', () => {
         expect(linkMatch).toBeTruthy();
     });
 
-
     it('debe mostrar la imagen del producto', () => {
         const img = screen.getByAltText(mockProps.name);
         expect(img.getAttribute('src')).toBe(mockProps.image);

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../assets/css/Register.css';
-import Footer from './Footer';
 
 const STORAGE_KEYS = ['loggedUser', 'user', 'usuario'];
 
@@ -81,7 +80,7 @@ const Register = () => {
 
       setSuccess(true);
       setTimeout(() => {
-        // redirigir (o cambiar según tu router)
+        // redirigir
         window.location.href = '/';
       }, 1200);
     } else {
@@ -162,7 +161,6 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

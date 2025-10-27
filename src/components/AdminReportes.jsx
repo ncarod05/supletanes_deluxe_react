@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 function AdminReportes() {
-  // Datos simulados
   const totalProductos = 12;
   const totalUsuarios = 45;
   const totalPedidos = 87;

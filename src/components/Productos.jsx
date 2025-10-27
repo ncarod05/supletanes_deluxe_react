@@ -75,7 +75,7 @@ function Productos({ setCart }) {
                 </div>
 
                 {/* Botón aplicar */}
-                <Button variant="danger" className="w-100">Aplicar filtros</Button>
+                <Button className="button w-100">Aplicar filtros</Button>
               </div>
             </Col>
 
