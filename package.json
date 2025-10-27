@@ -19,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "karma": "karma start --single-run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,6 +53,8 @@
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-webpack": "^5.0.1",
-    "style-loader": "^4.0.0"
+    "style-loader": "^4.0.0",
+    "webpack": "^5.x.x",
+    "webpack-cli": "^5.x.x"
   }
 }

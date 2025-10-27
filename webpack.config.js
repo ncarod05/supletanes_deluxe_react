@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.js', // punto de entrada
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -8,7 +9,7 @@ module.exports = {
   },
   // para importar archivos sin escribir la extensión:
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -21,7 +22,6 @@ module.exports = {
             // Esto le dice a Babel que traduzca código JavaScript moderno y React
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
-
         },
       },
       {
@@ -33,8 +33,12 @@ module.exports = {
         include: path.resolve(__dirname, 'src'), // para el reporte, solo instrumenta código fuente
         loader: 'coverage-istanbul-loader',
         options: { esModules: true },
-        enforce: 'post'
-      }
+        enforce: 'post',
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
 };
